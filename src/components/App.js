@@ -112,7 +112,9 @@ const App = () => {
     }
     else if(!error.name_error && !error.email_error && !error.phone_error &&  !error.gender_error && !error.password_error )
     {
+      //setuser({...user , name=""})
       alert("Hello " + user.email.split("@")[0]);
+       setuser({...user , name:"" , email:"" , phone:"",password:"" , gender:""})
     }
  
     } 
@@ -126,19 +128,19 @@ const App = () => {
         <form className="mainform" onSubmit={handle_submit_button}  >
             <div className="a"> 
             <label  >Name:</label>
-            <input type="text" placeholder="name" name="name" data-testid = 'name' onChange={handle_change} />
+            <input type="text" placeholder="name" value={user.name} name="name" data-testid = 'name' onChange={handle_change} />
             {!error.name_error?<></>:<span style={{ fontSize:12, color : "red" }}>{error.name_error}</span>}
             </div>
             
            <div className="a">
             <label>Email address</label>
-            <input type="text" placeholder="email" name="email" data-testid = 'email' onChange={handle_change} />
+            <input type="text" placeholder="email" value={user.email} name="email" data-testid = 'email' onChange={handle_change} />
             {!error.email_error?<></>:<span style={{ fontSize:12, color : "red" }}>{error.email_error}</span>}
             </div>
             
            <div className="a">
             <label>Gender:</label>
-            <select placeholder="gener"  name="gender" data-testid = 'gender' onChange={handle_change} >
+            <select placeholder="gener" value={user.gender}  name="gender" data-testid = 'gender' onChange={handle_change} >
             <option >select option</option>
               <option value="male" >male</option>
               <option value="female">female</option>
@@ -150,13 +152,13 @@ const App = () => {
 
            <div className="a">
             <label>Phone Number</label>
-            <input type="text" placeholder="phone" data-testid = 'phoneNumber' name="phone" onChange={handle_change} />
+            <input type="text" placeholder="phone" value={user.phone} data-testid = 'phoneNumber' name="phone" onChange={handle_change} />
              {!error.phone_error?<></>:<span style={{ fontSize:12, color : "red" }}>{error.phone_error}</span>}
             </div>
 
             <div className="a">
             <label>Password</label>
-            <input type="password" placeholder="password" data-testid = 'password' type='password' name="password" onChange={handle_change} d></input>
+            <input type="password" placeholder="password" value={user.password} data-testid = 'password' type='password' name="password" onChange={handle_change} d></input>
             {!error.password_error?<></>:<span style={{ fontSize:12, color : "red" }}>{error.password_error}</span>}
             </div>
 
