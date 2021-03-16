@@ -27,137 +27,94 @@ const App = () => {
        {
          case "name":
            setuser({...user , name:e.target.value})
-        
+           if( !/^[A-Za-z0-9]+$/.test(e.target.value ))
+           {
+              seterror({...error , name_error : "Name is not alphanumeric"})
+           }
+           else
+           {
+            seterror({...error , name_error : ""})
+           }
            break;
+
+
          case "email":
           setuser({...user , email:e.target.value})
-          
+          if(!e.target.value.includes("@"))
+               {
+                seterror({...error , email_error: "Email must contain @"})
+       
+              }else
+              {
+                seterror({...error , email_error : ""}) 
+              }
           break;
+
+
+
           case "gender":
            setuser({...user , gender:e.target.value})
-           
+           if(!e.target.value || e.target.value == "select option")
+           {
+              seterror({...error , gender_error:"Please identify as male, female or others"})
+           }
+           else
+           {
+            seterror({...error , gender_error:""})
+           }
            break;
+
+
+
+
          case "phone":
           setuser({...user , phone:e.target.value})
-          
+          if(!/^[0-9]+$/.test(e.target.value))
+          {
+            seterror({...error , phone_error :"Phone Number must contain only numbers"})
+          }
+          else
+          {
+            seterror({...error , phone_error :""})
+          }
           break;
+
+
+
+
           case "password":
            setuser({...user , password:e.target.value})
+           if(e.target.value.length < 6)
+           {
+             seterror({...error, password_error :"Password must contain atleast 6 letters"});
+           }
+           else
+           {
+            seterror({...error, password_error :""});
+           }
            break;
        }
 
        
     }
 
-    function cheack_for_validation()
+   
+
+    const handle_submit_button =(e)=>
     {
-     let flag = true;
-      let name_e = ""
-      let email_e = ""
-      let gender_e =""
-      let phone_e = ""
-      let password_e =""
-      let exp = /^[A-Za-z0-9]+$/;
-      const{ name , email , gender, phone , password} = user;
-      
-
-      
-
-
-      if( name =="") 
-      {
-        name_e = "name Error"
-       
-      }
-      else if(!exp.test(name))
-      {
-          name_e = "Name is not alphanumeric"
-         
-      }
-     
-      if(!email)
-      {
-        email_e = "Email Error";
-        
-      }
-      else if(!email.includes("@"))
-      {
-        email_e = "Email must contain @";
-       
-      }
-      
-      if(!gender || gender == "select option")
-      {
-        
-        gender_e = "Please identify as male, female or others"
-       
-      }
-      
-     
-
-      if(!phone)
-      {
-       
-        phone_e = "Phone Number Error";
-       
-      }
-      else if(!/^[0-9]+$/.test(phone)){ phone_e = "Phone Number must contain only numbers" ; } 
-       if(!password )
-      {
-        
-        password_e = "Password Error";
-   
-      }
-      else if(password.length < 6 )
-      {
-        password_e = "Password must contain atleast 6 letters"; 
-       
-      }
-      
-      seterror({...error , name_error:name_e , email_error:email_e,phone_error:phone_e,password_error:password_e,gender_error:gender_e})
-      if(name == "" && email =="" && gender=="" &&phone=="" && password =="")
-      {
-        alert("All fields are mandatory");
-      } 
-      if(!error.name_error || !error.email_error || !error.phone_error ||  !error.gender_error || !error.password_error )
-      {
-        flag = false;       
-      }
-      if(!error.name_error && !error.email_error && !error.phone_error &&  !error.gender_error && !error.password_error )
-      {
-        flag = true;       
-      }
-      return(flag);
-      
-    }
-
-    const handle_submit_button =(e)=>{
        e.preventDefault();
-      //cheack_for_validation();
-     //console.log(error);
+    
      
-    // if(user.name !="" && user.gender!="" && user.email!="" && user.phone!="" && user.password!="")
-    // {
-    //   alert("Hello " + user.email.split("@")[0]);
+    if(user.name  =="" && user.gender =="" && user.email =="" && user.phone =="" && user.password =="")
+    {
+      alert("All fields are mandatory");
      
-    // } 
-    let obj = {...error}
-
-      let res = cheack_for_validation();
-     
-
-      
-   
-      if(user.name !="" && user.gender!="" && user.email!="" && user.phone!="" && user.password!="" && res)
-      {
-        alert("Hello " + user.email.split("@")[0]);
-      }
-     
-  
-   // console.log(error);
-     // console.log(user);
-        //console.log(error);
-        
+    }
+    else if(!error.name_error && !error.email_error && !error.phone_error &&  !error.gender_error && !error.password_error )
+    {
+      alert("Hello " + user.email.split("@")[0]);
+    }
+ 
     } 
 
 
