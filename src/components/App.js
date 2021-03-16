@@ -51,7 +51,7 @@ const App = () => {
 
     function cheack_for_validation()
     {
-     
+     let flag = true;
       let name_e = ""
       let email_e = ""
       let gender_e =""
@@ -118,15 +118,19 @@ const App = () => {
       if(name == "" && email =="" && gender=="" &&phone=="" && password =="")
       {
         alert("All fields are mandatory");
-     
       } 
+      if(!error.name_error && !error.email_error && !error.phone_error &&  !error.gender_error && !error.password_error )
+      {
+        flag = false;       
+      }
+      return(flag);
       
     }
 
     const handle_submit_button =(e)=>{
-      e.preventDefault();
-     cheack_for_validation();
-     console.log(error);
+       e.preventDefault();
+      //cheack_for_validation();
+     //console.log(error);
      
     // if(user.name !="" && user.gender!="" && user.email!="" && user.phone!="" && user.password!="")
     // {
@@ -134,16 +138,15 @@ const App = () => {
      
     // } 
 
+      let res = cheack_for_validation();
 
-
-    if(!error.name_error && !error.email_error && !error.phone_error &&  !error.gender_error && !error.password_error )
-    {
-      if(user.name !="" && user.gender!="" && user.email!="" && user.phone!="" && user.password!="")
+   
+      if(user.name !="" && user.gender!="" && user.email!="" && user.phone!="" && user.password!="" && res)
       {
         alert("Hello " + user.email.split("@")[0]);
       }
      
-    }
+  
    // console.log(error);
      // console.log(user);
         //console.log(error);
