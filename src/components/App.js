@@ -119,9 +119,13 @@ const App = () => {
       {
         alert("All fields are mandatory");
       } 
-      if(!error.name_error && !error.email_error && !error.phone_error &&  !error.gender_error && !error.password_error )
+      if(!error.name_error || !error.email_error || !error.phone_error ||  !error.gender_error || !error.password_error )
       {
         flag = false;       
+      }
+      if(!error.name_error && !error.email_error && !error.phone_error &&  !error.gender_error && !error.password_error )
+      {
+        flag = true;       
       }
       return(flag);
       
@@ -137,9 +141,12 @@ const App = () => {
     //   alert("Hello " + user.email.split("@")[0]);
      
     // } 
+    let obj = {...error}
 
       let res = cheack_for_validation();
+     
 
+      
    
       if(user.name !="" && user.gender!="" && user.email!="" && user.phone!="" && user.password!="" && res)
       {
