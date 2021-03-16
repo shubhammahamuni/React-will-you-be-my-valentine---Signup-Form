@@ -27,9 +27,11 @@ const App = () => {
        {
          case "name":
            setuser({...user , name:e.target.value})
+           
            break;
          case "email":
           setuser({...user , email:e.target.value})
+          
           break;
           case "gender":
            setuser({...user , gender:e.target.value})
@@ -125,12 +127,20 @@ const App = () => {
       e.preventDefault();
      cheack_for_validation();
      console.log(error);
-     let obj = {...error}
-    if(user.name !="" && user.gender!="" && user.email!="" && user.phone!="" && user.password!="")
+     
+    // if(user.name !="" && user.gender!="" && user.email!="" && user.phone!="" && user.password!="")
+    // {
+    //   alert("Hello " + user.email.split("@")[0]);
+     
+    // } 
+
+
+
+    if(!error.name_error && !error.email_error && !error.phone_error &&  !error.gender_error && !error.password_error )
     {
       alert("Hello " + user.email.split("@")[0]);
-     
-    } 
+    }
+    console.log(error);
      // console.log(user);
         //console.log(error);
         
