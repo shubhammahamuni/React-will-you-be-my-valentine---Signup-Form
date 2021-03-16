@@ -27,7 +27,7 @@ const App = () => {
        {
          case "name":
            setuser({...user , name:e.target.value})
-           
+        
            break;
          case "email":
           setuser({...user , email:e.target.value})
@@ -138,9 +138,13 @@ const App = () => {
 
     if(!error.name_error && !error.email_error && !error.phone_error &&  !error.gender_error && !error.password_error )
     {
-      alert("Hello " + user.email.split("@")[0]);
+      if(user.name !="" && user.gender!="" && user.email!="" && user.phone!="" && user.password!="")
+      {
+        alert("Hello " + user.email.split("@")[0]);
+      }
+     
     }
-    console.log(error);
+   // console.log(error);
      // console.log(user);
         //console.log(error);
         
